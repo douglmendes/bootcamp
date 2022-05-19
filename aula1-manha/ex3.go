@@ -1,6 +1,5 @@
 /*
 
-
 Um professor de programação está corrigindo as avaliações de seus alunos na disciplina de
 Programação I para fornecer-lhes o feedback correspondente. Um dos pontos do exame é
 declarar diferentes variáveis.
