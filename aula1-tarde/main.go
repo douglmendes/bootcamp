@@ -15,7 +15,10 @@ das letras separadamente para soletrá-la. Para isso terão que:
 func ex1(palavra string) {
 	qtdLetras := len(palavra)
 	fmt.Printf("A palavra tem %v letras\n", qtdLetras)
-	fmt.Println(string([]rune(palavra)))
+	for _, c := range palavra {
+		fmt.Printf("%c\n", c)
+	}
+
 }
 
 /**
@@ -144,7 +147,7 @@ func main() {
 	//Exericio 1
 	fmt.Println("EXERCÍCIO 1")
 	ex1("Douglas")
-	fmt.Println(" -----------------------")
+	fmt.Println(" \n-----------------------")
 	//Exercicio 2
 	fmt.Println("EXERCÍCIO 2")
 	ex2(29, true, 4, 80000)
