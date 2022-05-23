@@ -180,6 +180,99 @@ func calcReturn(values []int, calc func(values ...int) int) int {
 	return result
 }
 
+/*
+Exercício 5 - Cálculo da quantidade de alimento
+Um abrigo de animais precisa descobrir quanta comida comprar para os animais de
+estimação. No momento eles só têm tarântulas, hamsters, cachorros e gatos, mas a previsão
+é que haja muito mais animais para abrigar.
+1. Cães precisam de 10 kg de alimento
+2. Gatos 5 kg
+3. Hamster 250 gramas.
+4. Tarântula 150 gramas.
+
+Precisamos:
+1. Implementar uma função Animal que receba como parâmetro um valor do tipo texto
+com o animal especificado e que retorne uma função com uma mensagem (caso não
+exista o animal)
+2. Uma função para cada animal que calcule a quantidade de alimento com base na
+quantidade necessária do animal digitado.
+Exemplo:
+
+const (
+dog = "dog"
+cat = "cat"
+)
+
+...
+animalDog, msg := Animal(dog)
+animalCat, msg := Animal(cat)
+
+...
+var amount float64
+amount+= animaldog(5)
+amount+= animalCat(8)
+*/
+
+const (
+	dog       = "dog"
+	cat       = "cat"
+	hamster   = "hamster"
+	tarantula = "tarantula"
+)
+
+func animalDog(quantity int) float64 {
+	return float64(quantity) * 10
+}
+
+func animalCat(quantity int) float64 {
+	return float64(quantity) * 5
+}
+
+func animalHamster(quantity int) float64 {
+	return float64(quantity) * 0.25
+}
+
+func animalTarantula(quantity int) float64 {
+	return float64(quantity) * 0.15
+}
+
+func Animal(animal string) (func(quantity int) float64, error) {
+	switch animal {
+	case dog:
+		return animalDog, nil
+	case cat:
+		return animalCat, nil
+	case hamster:
+		return animalHamster, nil
+	case tarantula:
+		return animalTarantula, nil
+	default:
+		return nil, errors.New("Animal inválido.")
+	}
+}
+
+func qtdAlimento() {
+	dogFn, err := Animal(dog)
+	catFn, err := Animal(cat)
+	hamsterFn, err := Animal(hamster)
+	tarantulaFn, err := Animal(tarantula)
+
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		var amount float64
+		amount += dogFn(5)
+		fmt.Println(amount)
+		amount += catFn(8)
+		fmt.Println(amount)
+		amount += hamsterFn(4)
+		fmt.Println(amount)
+		amount += tarantulaFn(10)
+		fmt.Println(amount)
+	}
+
+}
+
 func main() {
 
 	//EXERCICIO 1
@@ -206,6 +299,9 @@ func main() {
 	//EXERCICIO 4
 	fmt.Println("EXERCÍCIO 4")
 	fmt.Println(calcType(Average, 5, 5, 10, 15))
+	fmt.Println(" \n-----------------------")
+	fmt.Println("EXERCÍCIO 5")
+	qtdAlimento()
 	fmt.Println(" \n-----------------------")
 
 }
